@@ -12,7 +12,7 @@ const auth = require("./routes/auth");
 const user = require("./routes/user");
 const createPost = require("./routes/createpost");
 mongoose.set("strictQuery",true);
-mongoose.connect('mongodb://localhost:27017/InstaDatabase')
+mongoose.connect('mongodb+srv://dummyuser:du03092001@cluster0.2cozgta.mongodb.net/?retryWrites=true&w=majority/mydatabase')
 .then(()=>{
     console.log("DB connected");
 })
