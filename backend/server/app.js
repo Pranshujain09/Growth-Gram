@@ -2,17 +2,20 @@ const express = require("express");
 const path = require("path");
 const mongoose = require('mongoose');
 const cors= require("cors");
-const app = express();
-const port = 5000;
 const cookieParser = require("cookie-parser");
+const app = express();
+require('dotenv').config();
+const port = 5000;
+// const cookieParser = require("cookie-parser");
 const User=require('./model/User');
 const Post=require("./model/posts")
+// require('dotenv').config();
 
 const auth = require("./routes/auth");
 const user = require("./routes/user");
 const createPost = require("./routes/createpost");
 mongoose.set("strictQuery",true);
-mongoose.connect('mongodb+srv://dummyuser:du03092001@cluster0.2cozgta.mongodb.net/?retryWrites=true&w=majority/mydatabase')
+mongoose.connect(process.env.Mongo_URL)
 .then(()=>{
     console.log("DB connected");
 })
@@ -28,6 +31,10 @@ app.use(auth);
 app.use(createPost)
 app.use(user);
 app.use(cookieParser());
+
+app.get('/healthz',(req,res)=>{
+    res.send('this is working fine');
+})
 
 app.use(async (req,res,next)=>{
     const {user_id} = req.cookies;

@@ -1,0 +1,32 @@
+const express = require("express");
+const path = require("path");
+const mongoose = require('mongoose');
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+
+These lines are importing necessary Node.js modules and setting up variables for later use. They import modules like express, path, mongoose, cors, and cookie-parser using the require function
+
+
+
+
+const app = express();
+const port = 5000;
+
+app is created as an instance of the Express application.
+port is set to 5000, indicating that the server will listen on port 5000.
+
+
+
+
+const User = require('./model/User');
+const Post = require("./model/posts");
+const auth = require("./routes/auth");
+const user = require("./routes/user");
+
+Mongoose models for User and Post are imported from their respective locations.
+the order of these lines does matter in certain scenarios, particularly if one module or route depends on another
+
+
+
+require('dotenv').config();
+The dotenv package is used to load environment variables from a .env file.
